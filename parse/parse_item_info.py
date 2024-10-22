@@ -5,7 +5,7 @@ import pandas as pd
 
 
 item_category_list = ["MergeConsume", "MergeNormal", "MergeReward", "MergeSpawner"]
-item_category_list = ["MergeNormal", "MergeSpawner"]
+# item_category_list = ["MergeNormal", "MergeSpawner"]
 
 result = {}
 
@@ -53,6 +53,29 @@ for item_category in item_category_list:
             result[item["m_Id"]]["bubble_price"] = int(row["BubblePopPrice"].values[0])
             result[item["m_Id"]]["ruby_price"] = int(row["RubyPrice"].values[0])
             result[item["m_Id"]]["coin_price"] = int(row["CoinPrice"].values[0])
+
+        elif item_category == "MergeConsume":
+            result[item["m_Id"]]["spawn_item"] = row[f"SpawnItem"].values[0]
+            result[item["m_Id"]]["spawn_count"] = float(row[f"SpawnCount"].values[0])
+
+        elif item_category == "MergeReward":
+            result[item["m_Id"]]["timer_minute"] = row[f"OpenTimer_m"].values[0]
+            result[item["m_Id"]]["capacity"] = row["Capacity_Random"].values[0]
+
+            spawn_items = {}
+            for i in range(1, 13):
+                spawn_item = row[f"SpawnItem{i}"].values[0]
+                spawn_probability = float(row[f"Probability{i}"].values[0])
+                spawn_count = row[f"Count{i}"].values[0]
+
+                if spawn_item == "" or str(spawn_item) == "nan":
+                    continue
+
+                if spawn_count != "" and str(spawn_count) != "nan":
+                    spawn_items[spawn_item] = spawn_probability
+                else:
+                    spawn_items[spawn_item] = spawn_probability
+
 
         elif item_category == "MergeSpawner":
 
@@ -104,8 +127,22 @@ for item_category in item_category_list:
             111 : "construction_pipe",
             113 : "Household_G",
             114 : "Household_Electronic",
+            300 : "coin",
+            301 : "ruby",
+            302 : "energy",
+            303 : "exp",
+            304 : "energy_drink",
+
+            307 : "timer",
+            400 : "Reward_chest_green",
+            401 : "Reward_chest_red",
+            402 : "Reward_chest_blue",
+            403 : "piggybank",
+            404 : "energy_G",
+            # 406 :
+
         }
-        item_name_tag = image_name_dic[int(key) // 1000]
+        item_name_tag = image_name_dic.get(int(key) // 1000, "miss")
 
 
         result[item["m_Id"]]["image_name"] = f"{item_name_tag}{str(int(key) % 1000).zfill(2)}"
@@ -116,6 +153,8 @@ for item_category in item_category_list:
         result[item["m_Id"]]["name"] = item["m_Localized"]
 
 print(list(result.values()))
+
+# json.dump(list(result.values()), open(f'./csv/result2.json', 'w', encoding='UTF8'), ensure_ascii=False)
 
 df = pd.DataFrame(list(result.values()))
 
