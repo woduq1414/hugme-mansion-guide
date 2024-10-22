@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import questData from "../data/quest_data.json";
-import itemData from "../data/item_data.json";
+
 
 import {Key, useEffect, useState} from "react";
 
@@ -11,7 +11,7 @@ import {Item, Mission, Quest, Reward} from "../models/model";
 
 const typedQuestData: Quest[] = questData as unknown as Quest[];
 
-const typedItemData: Item[] = itemData as Item[];
+import {typedItemData} from "@/app/data/ItemData";
 
 import ItemWrapper from "../components/ItemWrapper";
 
@@ -22,12 +22,6 @@ export default function ItemPage() {
     const [targetCategory, setTargetCategory] = useState(0);
 
 
-    const typedItemObj: {
-        [key: string]: Item
-    } = {};
-    typedItemData.forEach((item) => {
-        typedItemObj[item["key"]] = item;
-    });
 
     const groupedItemData: {
         [key: number]: {
@@ -51,7 +45,7 @@ export default function ItemPage() {
 
         if (item["comment"]) {
             if (!(item["comment"].toLowerCase() in groupedItemData[categoryIndex])) {
-                groupedItemData[categoryIndex][item["comment"].toLowerCase()] = [];
+                groupedItemData[categoryIndex][item["comment"].toLowerCase()] = [item];
             } else {
                 groupedItemData[categoryIndex][item["comment"].toLowerCase()].push(item);
             }
@@ -86,6 +80,7 @@ export default function ItemPage() {
         "water": "물",
         "lamp": "전등",
         "household goods": "생활용품",
+        "electronic products" : "전자제품",
         "shopping carts": "쇼핑카트",
         "energydrink" : "에너지 부스터",
         "timebooster" : "타임 부스터",

@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import questData from "../data/quest_data.json";
-import itemData from "../data/item_data.json";
+
 
 import {useEffect, useState} from "react";
 
@@ -11,7 +11,7 @@ import {Item, Mission, Quest, Reward} from "../models/model";
 
 const typedQuestData: Quest[] = questData as unknown as Quest[];
 
-const typedItemData: Item[] = itemData as Item[];
+import {typedItemData} from "@/app/data/ItemData";
 
 import ItemWrapper from "../components/ItemWrapper";
 
