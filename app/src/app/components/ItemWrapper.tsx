@@ -30,6 +30,7 @@ export default function ItemWrapper(
         "stationery" : "border-red-500",
         "toys" : "border-red-500",
         "construction materia" : "border-yellow-500",
+        "construction pallets" : "border-yellow-500",
         "water" : "border-blue-500",
         "lamp" : "border-yellow-500",
         "household goods" : "border-red-300",
