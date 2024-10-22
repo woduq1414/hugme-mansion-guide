@@ -19,6 +19,7 @@ interface Quest {
 interface Item {
     key: string;
     image_name: string;
+    comment: string;
 }
 
 export type {Item, Quest, Mission, Reward};
