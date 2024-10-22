@@ -45,8 +45,8 @@ export default function RootLayout({
                         <Link href={"/"}>
                             <button
                                 className={`flex flex-row gap-1 items-center justify-center rounded-lg px-3 py-2
-                                font-bold text-gray-700 bg-white border-2 border-gray-200 transition hover:bg-gray-200
-                                ${pathname === '/' ? 'bg-gray-100' : ''}
+                                font-bold text-gray-700 border-2 border-gray-200 transition hover:bg-gray-200
+                                ${pathname === '/' ? 'bg-gray-100' : 'bg-white'}
                                 `}>
 
 
@@ -56,8 +56,8 @@ export default function RootLayout({
                         <Link href={"/quest"}>
                             <button
                               className={`flex flex-row gap-1 items-center justify-center rounded-lg px-3 py-2
-                                font-bold text-gray-700 bg-white border-2 border-gray-200 transition hover:bg-gray-200
-                                ${pathname === '/quest' ? 'bg-gray-100' : ''}
+                                font-bold text-gray-700  border-2 border-gray-200 transition hover:bg-gray-200
+                                ${pathname === '/quest' ? 'bg-gray-100' : 'bg-white'}
                               `}>
 
                                 <div className="text-lg leading-8">💡 퀘스트</div>
@@ -67,7 +67,7 @@ export default function RootLayout({
                             <button
                                 className={`flex flex-row gap-1 items-center justify-center rounded-lg px-3 py-2
                                 font-bold text-gray-700 bg-white border-2 border-gray-200 transition hover:bg-gray-200
-                                ${pathname === '/item' ? 'bg-gray-100' : ''}
+                                ${pathname === '/item' ? 'bg-gray-100' : 'bg-white'}
                               `}>
                                 <div className="text-lg leading-8">🗂️ 아이템</div>
                             </button>
