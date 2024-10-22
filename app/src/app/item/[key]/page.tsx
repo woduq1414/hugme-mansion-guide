@@ -116,7 +116,7 @@ export default function ItemDetailPage(
                         {
 
                             Object.entries(item["spawn_items"])
-                    
+
                                 .sort(([, valueA], [, valueB]) => valueB - valueA)
 
                                 .map(([key]) => key).map((key, idx) => {
@@ -146,9 +146,11 @@ export default function ItemDetailPage(
                     </div>
                 )
                 :
-                <div className={"text-2xl mt-10"}>
-                    생산 불가
-                </div>
+                (
+                    item["category"] == "MergeSpawner" &&
+                    <div className={"text-2xl mt-10"}>
+                        생산 불가
+                    </div>)
             }
         </div>
 
