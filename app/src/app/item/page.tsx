@@ -121,7 +121,9 @@ export default function ItemPage() {
                                     {
                                         groupedItemData[targetCategory][category].map((item: Item, idx2: number) => {
                                             return (
-                                                <ItemWrapper key={
+                                                <ItemWrapper
+                                                    size={undefined}
+                                                    key={
                                                     idx2
                                                 }
                                                              item={item} cnt={undefined}/>

@@ -7,8 +7,8 @@ import Link from "next/link";
 export default function ItemWrapper(
     props: {
         item: Item,
-        cnt: number | undefined
-        size : string | undefined | null
+        cnt?: number | undefined
+        size? : string | undefined | null
     }
 ) {
 
@@ -55,7 +55,7 @@ export default function ItemWrapper(
         <Tooltip content={item["name"]} >
             <Link href={`/item/${item["key"]}`}>
                 <div
-                 
+
                     className={`rounded-2xl border-2 ${borderColor} ${
                         props.size == "large" ? "w-24 h-24" : "w-16 h-16"
                     } block relative cursor-pointer`}>

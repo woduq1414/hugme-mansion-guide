@@ -75,7 +75,9 @@ export default function Home() {
 
                                             return (
 
-                                                <ItemWrapper key={
+                                                <ItemWrapper
+
+                                                    key={
                                                     idx2
                                                 }
                                                              item={mission["item"]} cnt={mission["cnt"]}/>
@@ -97,7 +99,9 @@ export default function Home() {
 
                                             return (
 
-                                                <ItemWrapper key={
+                                                <ItemWrapper
+                                                    size={undefined}
+                                                    key={
                                                     idx2
                                                 }
                                                              item={reward["item"]} cnt={reward["cnt"]}/>
