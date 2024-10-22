@@ -1,5 +1,7 @@
 import Image from "next/image";
 import {Item} from "@/app/models/model";
+import { Tooltip } from "flowbite-react";
+
 
 export default function ItemWrapper(
     props: {
@@ -48,22 +50,24 @@ export default function ItemWrapper(
 
 
     return (
-        <div
-            className={`rounded-2xl border-2 ${borderColor} w-16 h-16 block relative cursor-pointer`}>
-            <Image src={`/sprites/${item["image_name"]}.png`}
-                   alt={item["image_name"]}
-                   className={"p-[0.25rem]"}
-                   fill/>
+        <Tooltip content={item["name"]} >
+            <div
+                className={`rounded-2xl border-2 ${borderColor} w-16 h-16 block relative cursor-pointer`}>
+                <Image src={`/sprites/${item["image_name"]}.png`}
+                       alt={item["image_name"]}
+                       className={"p-[0.25rem]"}
+                       fill/>
 
-            {/*<div>{quest["mission"][itemKey]}</div>*/}
-            {
-                cnt && cnt > 0 ? (
-                    <div className={`text-xs leading-[1.2rem]" +
+                {/*<div>{quest["mission"][itemKey]}</div>*/}
+                {
+                    cnt && cnt > 0 ? (
+                        <div className={`text-xs leading-[1.2rem]" +
                 " text-center h-5 w-5 bg-white absolute right-[-0.3rem] bottom-[-0.1rem] rounded-full ${borderColor} border-2 font-bold`}>
-                        {cnt}
-                    </div>
-                ) : null
-            }
-        </div>
+                            {cnt}
+                        </div>
+                    ) : null
+                }
+            </div>
+        </Tooltip>
     )
 }

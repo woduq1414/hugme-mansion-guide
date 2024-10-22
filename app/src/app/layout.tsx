@@ -4,12 +4,13 @@ import type {Metadata} from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+
+
 const suite = localFont({
     src: "./fonts/SUITE-Variable.woff2",
     variable: "--font-suite",
     weight: "100 900",
 });
-
 
 
 import {CounterStoreProvider} from '@/app/providers/testProvider';
@@ -55,7 +56,7 @@ export default function RootLayout({
                         </Link>
                         <Link href={"/quest"}>
                             <button
-                              className={`flex flex-row gap-1 items-center justify-center rounded-lg px-3 py-2
+                                className={`flex flex-row gap-1 items-center justify-center rounded-lg px-3 py-2
                                 font-bold text-gray-700  border-2 border-gray-200 transition hover:bg-gray-200
                                 ${pathname === '/quest' ? 'bg-gray-100' : 'bg-white'}
                               `}>
@@ -77,6 +78,9 @@ export default function RootLayout({
                 <div className={"flex-grow absolute top-20 w-full"}>
                     <CounterStoreProvider>
                         {children}
+
+
+
                     </CounterStoreProvider>
 
                 </div>

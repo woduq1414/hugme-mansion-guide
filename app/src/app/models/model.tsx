@@ -21,6 +21,7 @@ interface Item {
     image_name: string;
     comment: string;
     category: string;
+    name: string;
 }
 
 export type {Item, Quest, Mission, Reward};
