@@ -22,6 +22,13 @@ interface Item {
     comment: string;
     category: string;
     name: string;
+    capacity?: number | null;
+    charge_time?: number | null;
+    spawn_items? : {
+        [key: string]: number
+    } | null;
+
+
 }
 
 export type {Item, Quest, Mission, Reward};
