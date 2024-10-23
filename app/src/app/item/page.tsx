@@ -11,7 +11,7 @@ import {Item, Mission, Quest, Reward} from "../models/model";
 
 const typedQuestData: Quest[] = questData as unknown as Quest[];
 
-import {typedItemData, itemEngToKor} from "@/app/data/ItemData";
+import {typedItemData, itemEngToKor, groupedItemData} from "@/app/data/ItemData";
 
 import ItemWrapper from "../components/ItemWrapper";
 import {useRouter} from "next/navigation";
@@ -33,39 +33,7 @@ export default function ItemPage() {
     }, [searchParams])
 
 
-    const groupedItemData: {
-        [key: number]: {
-            [key: string]: Item[]
-        }
-    } = {
-        0: {},
-        1: {},
-        2: {},
-        3: {},
-    };
 
-    typedItemData.forEach((item) => {
-        let categoryIndex: number = 0;
-        if (item["category"] == "MergeSpawner") {
-            categoryIndex = 0;
-        } else if (item["category"] == "MergeNormal") {
-            categoryIndex = 1;
-        } else if (item["category"] == "MergeReward") {
-            categoryIndex = 2;
-        } else {
-            categoryIndex = 3;
-        }
-
-        if (item["comment"]) {
-            if (!(item["comment"].toLowerCase() in groupedItemData[categoryIndex])) {
-                groupedItemData[categoryIndex][item["comment"].toLowerCase()] = [item];
-            } else {
-                groupedItemData[categoryIndex][item["comment"].toLowerCase()].push(item);
-            }
-        }
-
-
-    });
 
 
     return (

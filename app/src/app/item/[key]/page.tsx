@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import {typedItemData} from "@/app/data/ItemData";
+import {groupedItemData, typedItemData} from "@/app/data/ItemData";
 
 import {useEffect, useState} from "react";
 
@@ -11,6 +11,7 @@ import {Item, Mission, Quest, Reward} from "@/app/models/model";
 
 import ItemWrapper from "@/app/components/ItemWrapper";
 import {useRouter} from "next/navigation";
+import exp from "node:constants";
 
 
 export default function ItemDetailPage(
@@ -46,7 +47,7 @@ export default function ItemDetailPage(
 
     return (
 
-        <div className={"flex flex-col items-center"}>
+        <div className={"flex flex-col items-center mb-3"}>
             <div className={"flex flex-row justify-center gap-6 mt-10 items-center"}>
                 <div className={`cursor-pointer
                 ${(parseInt(params.key) - 1) + "" in typedItemObj ? "cursor-pointer" : "invisible"}`}
@@ -83,6 +84,7 @@ export default function ItemDetailPage(
 
             </div>
 
+
             {
                 item["selling_price"] && item["selling_price"] > 0 && (
 
@@ -111,13 +113,98 @@ export default function ItemDetailPage(
                 )
             }
 
+            {item["category"] == "MergeNormal" ? (
+                    <div>
+
+                        {
+                            (() => {
+                                const firstItem = (parseInt(params.key) - parseInt(params.key) % 100 + 1) + "";
+
+                                let targetCategory = undefined;
+                                for (let spawner in groupedItemData[0]) {
+
+                                    if (groupedItemData[0][spawner][3]["spawn_items"]) {
+                                        if (firstItem in groupedItemData[0][spawner][3]["spawn_items"]) {
+
+                                            targetCategory = spawner;
+                                            break;
+                                        }
+                                    }
+
+                                }
+                                if (!targetCategory) {
+                                    return (
+                                        <div></div>
+                                    )
+                                }
+
+                                return (
+                                    <div className={"flex flex-col gap-2 items-center"}>
+                                        <div className={"font-bold text-xl mt-8"}>
+                                            필요 에너지 기댓값
+                                        </div>
+                                        {
+                                            groupedItemData[0][targetCategory].slice(3).map((item: Item, idx: number) => {
+                                                let spawnItems = item["spawn_items"];
+                                                let expectedPerEnergy = 0;
+                                                for(let key in spawnItems){
+                                                    console.log(item, key);
+                                                   if(Math.floor(parseInt(key) / 100) == Math.floor(parseInt(params.key) / 100)){
+                                                       expectedPerEnergy += spawnItems[key] * Math.pow(2, (parseInt(key) % 100 - 1));
+                                                   }
+                                                }
+                                                let neededLv1Item = Math.pow(2, (parseInt(params.key) % 100 - 1));
+
+
+                                                return (
+                                                    <div key={idx} className={"flex flex-row gap-2 items-center"}>
+                                                        <ItemWrapper item={item}/>
+                                                        <div className={"text-lg ml-3"}>
+                                                            {item["name"]}
+                                                        </div>
+                                                        <div className={"text-xl ml-3"}>
+                                                        <span
+                                                            className={" font-bold"}>{Math.floor(neededLv1Item / expectedPerEnergy * 10)/ 10}</span> 개
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+
+                                )
+
+                                // return [].map((sdf) => {
+                                //     return (
+                                //         <div key={sdf} className={"flex flex-row gap-2 items-center"}>
+                                //             <ItemWrapper item={typedItemObj["energy"]}/>
+                                //             <div className={"text-lg ml-3"}>
+                                //                 {typedItemObj["energy"]["name"]}
+                                //             </div>
+                                //             <div className={"text-xl ml-3"}>
+                                //                 <span className={" font-bold"}>1</span> 개
+                                //             </div>
+                                //         </div>
+                                //     )
+                                // })
+                            })()
+
+                        }
+                    </div>
+                )
+                :
+                (
+                    item["category"] == "MergeNormal" &&
+                    <></>)
+            }
+
             {item["category"] == "MergeSpawner" && item["spawn_items"] != null &&
             (Object.keys(item["spawn_items"]).length > 0) ? (
                     <div className={"flex flex-col gap-2 mt-10 items-center"}>
 
                         <div className={"flex flex-row gap-3"}>
                             <div className={"font-bold text-xl"}>
-                            충전 시간
+                                충전 시간
                             </div>
                             <div className={"text-xl"}>
                                 {

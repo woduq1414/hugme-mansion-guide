@@ -42,7 +42,41 @@ export const itemEngToKor: {
     "파란색": "파란색 보상 상자",
     "빨간색": "빨간색 보상 상자",
     "저금통": "저금통",
-    "에너지팩" : "에너지팩",
-    "일일퀘스트" : "일일 퀘스트",
+    "에너지팩": "에너지팩",
+    "일일퀘스트": "일일 퀘스트",
 
 }
+
+export const groupedItemData: {
+    [key: number]: {
+        [key: string]: Item[]
+    }
+} = {
+    0: {},
+    1: {},
+    2: {},
+    3: {},
+};
+
+typedItemData.forEach((item) => {
+    let categoryIndex: number = 0;
+    if (item["category"] == "MergeSpawner") {
+        categoryIndex = 0;
+    } else if (item["category"] == "MergeNormal") {
+        categoryIndex = 1;
+    } else if (item["category"] == "MergeReward") {
+        categoryIndex = 2;
+    } else {
+        categoryIndex = 3;
+    }
+
+    if (item["comment"]) {
+        if (!(item["comment"].toLowerCase() in groupedItemData[categoryIndex])) {
+            groupedItemData[categoryIndex][item["comment"].toLowerCase()] = [item];
+        } else {
+            groupedItemData[categoryIndex][item["comment"].toLowerCase()].push(item);
+        }
+    }
+
+
+});
