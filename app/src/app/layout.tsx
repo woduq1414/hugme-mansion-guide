@@ -51,7 +51,7 @@ export default function RootLayout({
                                 `}>
 
 
-                                <div className="text-lg leading-8">🏠 홈</div>
+                                <div className="text-lg leading-8 ">🏠 홈</div>
                             </button>
                         </Link>
                         <Link href={"/quest"}>
