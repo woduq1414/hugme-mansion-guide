@@ -5,7 +5,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 
-
 const suite = localFont({
     src: "./fonts/SUITE-Variable.woff2",
     variable: "--font-suite",
@@ -16,6 +15,7 @@ const suite = localFont({
 import {CounterStoreProvider} from '@/app/providers/testProvider';
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import {Suspense} from "react";
 
 export default function RootLayout({
                                        children,
@@ -77,8 +77,10 @@ export default function RootLayout({
                 </div>
                 <div className={"flex-grow absolute top-20 w-full"}>
                     <CounterStoreProvider>
-                        {children}
+                        <Suspense>
+                            {children}
 
+                        </Suspense>
 
 
                     </CounterStoreProvider>
