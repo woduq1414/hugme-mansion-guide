@@ -83,13 +83,41 @@ export default function ItemDetailPage(
 
             </div>
 
+            {
+                item["selling_price"] && item["selling_price"] > 0 && (
+
+                    <div className={"flex"}>
+                        <span className={"flex flex-row items-center"}>
+                            <span>
+                                팔 때 :
+                            </span>
+                            <Image src={"/sprites/coin01.png"} alt={"coin"} width={20} height={20}></Image>
+                             <span className={"font-bold"}>{item["selling_price"]}</span>
+                        </span>
+                        <span className={"flex flex-row items-center ml-3"}>
+                            <span>
+                                살 때 :
+                            </span>
+                            <Image src={"/sprites/coin01.png"} alt={"coin"} width={20} height={20}></Image>
+                             <span className={"font-bold"}>{item["coin_price"]}</span>
+                            <span className={"ml-1"}>
+                                /
+                            </span>
+                            <Image src={"/sprites/ruby01.png"} alt={"ruby"} width={20} height={20}></Image>
+                             <span className={"font-bold"}>{item["ruby_price"]}</span>
+                        </span>
+
+                    </div>
+                )
+            }
+
             {item["category"] == "MergeSpawner" && item["spawn_items"] != null &&
             (Object.keys(item["spawn_items"]).length > 0) ? (
                     <div className={"flex flex-col gap-2 mt-10 items-center"}>
 
                         <div className={"flex flex-row gap-3"}>
                             <div className={"font-bold text-xl"}>
-                                충전 시간
+                            충전 시간
                             </div>
                             <div className={"text-xl"}>
                                 {
@@ -175,7 +203,7 @@ export default function ItemDetailPage(
                             item["capacity"] && item["capacity"] > 0 && (
                                 <div className={"flex flex-row gap-3"}>
                                     <div className={"font-bold text-xl"}>
-                                        생산량
+                                        랜덤 생산량
                                     </div>
                                     <div className={"text-xl"}>
                                         <span className={"font-bold"}>{item["capacity"]}</span> 개
@@ -230,10 +258,7 @@ export default function ItemDetailPage(
                 )
                 :
                 (
-                    item["category"] == "MergeSpawner" &&
-                    <div className={"text-2xl mt-10"}>
-                        생산 불가
-                    </div>)
+                    <></>)
             }
         </div>
 

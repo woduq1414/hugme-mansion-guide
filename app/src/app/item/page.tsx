@@ -14,13 +14,23 @@ const typedQuestData: Quest[] = questData as unknown as Quest[];
 import {typedItemData, itemEngToKor} from "@/app/data/ItemData";
 
 import ItemWrapper from "../components/ItemWrapper";
-
+import {useRouter} from "next/navigation";
+import {useSearchParams} from 'next/navigation'
 
 export default function ItemPage() {
     // console.log(questData["m_TableData"])
 
     const [targetCategory, setTargetCategory] = useState(0);
 
+    const router = useRouter();
+
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        if (searchParams.has('category')) {
+            setTargetCategory(parseInt(searchParams.get('category') as string));
+        }
+    }, [searchParams])
 
 
     const groupedItemData: {
@@ -42,7 +52,7 @@ export default function ItemPage() {
             categoryIndex = 1;
         } else if (item["category"] == "MergeReward") {
             categoryIndex = 2;
-        }else{
+        } else {
             categoryIndex = 3;
         }
 
@@ -58,21 +68,20 @@ export default function ItemPage() {
     });
 
 
-
-
     return (
 
         <div className={"flex flex-col w-full "}>
             <div className={"flex flex-row flex-wrap px-4 gap-2 w-full"}>
                 {
-                    ["생산템", "일반템", "보상템", "특수템", ].map((category, idx) => {
+                    ["생산템", "일반템", "보상템", "특수템",].map((category, idx) => {
                         return (
                             <div key={idx} className={`bg-amber-300 rounded-md px-2 text-lg cursor-pointer ${
                                 targetCategory === idx ? 'bg-amber-500' : ''
                             }`}
                                  onClick={() => {
-
+                                     router.push("/item?category=" + idx);
                                      setTargetCategory(idx);
+
                                  }}
                             >
                                 {category}
@@ -95,9 +104,9 @@ export default function ItemPage() {
                                                 <ItemWrapper
                                                     size={undefined}
                                                     key={
-                                                    idx2
-                                                }
-                                                             item={item} cnt={undefined}/>
+                                                        idx2
+                                                    }
+                                                    item={item} cnt={undefined}/>
                                             )
                                         })
                                     }

@@ -25,6 +25,10 @@ interface Item {
     capacity?: number | null;
     charge_time?: number | null;
     timer_minute? : number | null;
+    selling_price? : number | null;
+    bubble_price? : number | null;
+    ruby_price? : number | null;
+    coin_price? : number | null;
     spawn_items? : {
         [key: string]: number
     } | null;
