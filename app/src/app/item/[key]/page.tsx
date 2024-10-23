@@ -152,6 +152,89 @@ export default function ItemDetailPage(
                         생산 불가
                     </div>)
             }
+
+            {item["category"] == "MergeReward" && item["spawn_items"] != null &&
+            (Object.keys(item["spawn_items"]).length > 0) ? (
+                    <div className={"flex flex-col gap-2 mt-10 items-center"}>
+
+                        <div className={"flex flex-row gap-3"}>
+                            <div className={"font-bold text-xl"}>
+                                오픈 시간
+                            </div>
+                            <div className={"text-xl"}>
+                                {
+                                    item["timer_minute"] && item["timer_minute"] > 0 ? (
+                                        <span><span className={"font-bold"}>{item["timer_minute"]}</span> 분</span>
+                                    ) : <span>
+                                즉시
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        {
+                            item["capacity"] && item["capacity"] > 0 && (
+                                <div className={"flex flex-row gap-3"}>
+                                    <div className={"font-bold text-xl"}>
+                                        생산량
+                                    </div>
+                                    <div className={"text-xl"}>
+                                        <span className={"font-bold"}>{item["capacity"]}</span> 개
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        <div className={"font-bold text-xl mt-8"}>
+                            생산품
+                        </div>
+                        {
+
+                            Object.entries(item["spawn_items"])
+
+                                .sort(([, valueA], [, valueB]) => valueB - valueA)
+
+                                .map(([key]) => key).map((key, idx) => {
+
+                                if (item["spawn_items"] == null) {
+                                    return;
+                                }
+                                //                               console.log(  Object.entries(item["spawn_items"])
+                                // .sort(([, a], [, b]) => a - b)
+                                // .reduce((r, [k, v]) => ({ ...r, [k]: v }), {}));
+
+                                return (
+                                    <div key={idx} className={"flex flex-row gap-2 items-center"}>
+                                        <ItemWrapper item={typedItemObj[key]}/>
+                                        <div className={"text-lg ml-3"}>
+                                            {typedItemObj[key]["name"]}
+                                        </div>
+                                        {
+                                            item["spawn_items"][key] >= 1 ? (
+                                                    <div className={"text-xl ml-3"}>
+                                        <span
+                                            className={" font-bold"}>{item["spawn_items"][key]}</span> 개
+                                                    </div>
+                                                ) :
+                                                <div className={"text-xl ml-3"}>
+                                            <span
+                                                className={" font-bold"}>{Math.round(item["spawn_items"][key] * 100)}</span> %
+                                                </div>
+
+                                        }
+                                    </div>
+                                )
+                            })
+
+                        }
+                    </div>
+                )
+                :
+                (
+                    item["category"] == "MergeSpawner" &&
+                    <div className={"text-2xl mt-10"}>
+                        생산 불가
+                    </div>)
+            }
         </div>
 
     )

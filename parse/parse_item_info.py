@@ -72,9 +72,17 @@ for item_category in item_category_list:
                     continue
 
                 if spawn_count != "" and str(spawn_count) != "nan":
-                    spawn_items[spawn_item] = spawn_probability
+                    spawn_items[spawn_item] = spawn_count
                 else:
                     spawn_items[spawn_item] = spawn_probability
+
+            result[item["m_Id"]]["spawn_items"] = spawn_items
+
+
+            result[item["m_Id"]]["comment"] = [
+                x["m_Localized"] for x in name_data if x["m_Id"] == item["m_Id"]
+            ][0].split(" ")[0].split("(")[0]
+
 
 
         elif item_category == "MergeSpawner":

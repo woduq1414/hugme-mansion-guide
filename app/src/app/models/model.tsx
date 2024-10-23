@@ -24,6 +24,7 @@ interface Item {
     name: string;
     capacity?: number | null;
     charge_time?: number | null;
+    timer_minute? : number | null;
     spawn_items? : {
         [key: string]: number
     } | null;

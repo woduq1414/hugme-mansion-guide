@@ -1,14 +1,15 @@
 import Image from "next/image";
 import {Item} from "@/app/models/model";
-import { Tooltip } from "flowbite-react";
+import {Tooltip} from "flowbite-react";
 import Link from "next/link";
+import {useEffect, useState} from "react";
 
 
 export default function ItemWrapper(
     props: {
         item: Item,
         cnt?: number | undefined
-        size? : string | undefined | null
+        size?: string | undefined | null
     }
 ) {
 
@@ -52,7 +53,7 @@ export default function ItemWrapper(
 
 
     return (
-        <Tooltip content={item["name"]} >
+        <Tooltip content={item["name"]}>
             <Link href={`/item/${item["key"]}`}>
                 <div
 
@@ -62,6 +63,8 @@ export default function ItemWrapper(
                     <Image src={`/sprites/${item["image_name"]}.png`}
                            alt={item["image_name"]}
                            className={"p-[0.25rem]"}
+
+
                            fill/>
 
                     {/*<div>{quest["mission"][itemKey]}</div>*/}

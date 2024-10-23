@@ -31,6 +31,7 @@ export default function ItemPage() {
         0: {},
         1: {},
         2: {},
+        3: {},
     };
 
     typedItemData.forEach((item) => {
@@ -39,8 +40,10 @@ export default function ItemPage() {
             categoryIndex = 0;
         } else if (item["category"] == "MergeNormal") {
             categoryIndex = 1;
-        } else {
+        } else if (item["category"] == "MergeReward") {
             categoryIndex = 2;
+        }else{
+            categoryIndex = 3;
         }
 
         if (item["comment"]) {
@@ -62,7 +65,7 @@ export default function ItemPage() {
         <div className={"flex flex-col w-full "}>
             <div className={"flex flex-row flex-wrap px-4 gap-2 w-full"}>
                 {
-                    ["생산템", "일반템", "특수템"].map((category, idx) => {
+                    ["생산템", "일반템", "보상템", "특수템", ].map((category, idx) => {
                         return (
                             <div key={idx} className={`bg-amber-300 rounded-md px-2 text-lg cursor-pointer ${
                                 targetCategory === idx ? 'bg-amber-500' : ''
