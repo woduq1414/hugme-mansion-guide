@@ -34,6 +34,9 @@ export default function RootLayout({
 
 
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>
+                안아줘요 동물맨션 가이드북
+            </title>
         </head>
         <body
             className={`${suite.variable}  antialiased light`}
