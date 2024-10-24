@@ -1,10 +1,40 @@
 import itemData from "@/app/data/item_data.json";
+import limit from "@/app/data/limit.json";
 
 
 import {Item, Mission, Quest, Reward} from "../models/model";
 
 
-export const typedItemData: Item[] = itemData as Item[];
+const originalTypedItemData: Item[] = itemData as Item[];
+
+let typedItemDataTmp : Item[] = [];
+
+const itemLimit : {
+    [key:string] : number
+}= limit["item"];
+
+
+for(let i = 0 ; i < originalTypedItemData.length ; i++ ){
+    const item = originalTypedItemData[i];
+    const category = item["comment"].toLowerCase();
+
+    if(category in itemLimit){
+        const itemLimitCnt = itemLimit[category];
+        if(itemLimitCnt == undefined){
+            typedItemDataTmp.push(item);
+        }
+
+        if(parseInt(item["key"]) % 100 <= itemLimitCnt){
+            typedItemDataTmp.push(item);
+
+        }
+    }else{
+         typedItemDataTmp.push(item);
+    }
+
+}
+
+export const typedItemData : Item[] = typedItemDataTmp;
 
 
 export const itemEngToKor: {

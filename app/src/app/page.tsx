@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <div className={"flex flex-col items-center justify-center py-2 h-[calc(100vh-5rem)]"}>
             <div className={"text-xl text-center"}>
-                <span className={"flex flex-col"}>
+                <span className={"flex flex-col mx-2"}>
                     <span>
                     [안아줘요 동물맨션] 비공식 가이드북입니다.
                     </span>

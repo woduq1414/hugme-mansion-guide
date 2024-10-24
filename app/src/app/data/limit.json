@@ -1,0 +1,31 @@
+{
+  "quest": {},
+  "item": {
+    "cleaning products": 12,
+    "cleaning storages": 10,
+    "detergent": 7,
+    "tools": 10,
+    "toolboxes": 10,
+    "screws": 5,
+    "paint cans": 4,
+    "flowerpots": 9,
+    "seedbag": 4,
+    "plants": 8,
+    "wood": 7,
+    "stationery": 8,
+    "toys": 6,
+    "schoolbag": 10,
+    "construction materia": 8,
+    "construction pallets": 10,
+    "pipes": 5,
+    "water": 6,
+    "lamp": 5,
+    "household goods": 0,
+    "electronic products": 0,
+    "shopping carts": 0,
+    "energydrink": 0,
+    "copycamera" : 0,
+    "scissors" : 0,
+    "여기까지" : 0
+  }
+}

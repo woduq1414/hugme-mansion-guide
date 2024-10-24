@@ -14,6 +14,8 @@ const typedQuestData: Quest[] = questData as unknown as Quest[];
 import {typedItemData} from "@/app/data/ItemData";
 
 import ItemWrapper from "../components/ItemWrapper";
+import {useSearchParams} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 
 export default function Home() {
@@ -29,6 +31,15 @@ export default function Home() {
         typedItemObj[item["key"]] = item;
     });
 
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (searchParams.has('floor')) {
+            setTargetFloor(parseInt(searchParams.get('floor') as string));
+        }
+    }, [searchParams])
+
     return (
 
         <div className={"flex flex-col w-full "}>
@@ -40,7 +51,7 @@ export default function Home() {
                                 targetFloor === idx ? 'bg-amber-500' : ''
                             }`}
                                  onClick={() => {
-
+                                     router.push("/quest?floor=" + idx);
                                      setTargetFloor(idx);
                                  }}
                             >
