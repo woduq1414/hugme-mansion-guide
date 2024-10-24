@@ -118,12 +118,20 @@ export default function ItemDetailPage(
                         {
                             (() => {
                                 const firstItem = (parseInt(params.key) - parseInt(params.key) % 100 + 1) + "";
-
+                                // console.log(firstItem)
                                 let targetCategory = undefined;
+
+                                let firstSpawnerIdx = 3;
+
+                                if(firstItem == "207001"){
+                                    firstSpawnerIdx = 4;
+                                }
+
                                 for (let spawner in groupedItemData[0]) {
 
-                                    if (groupedItemData[0][spawner][3]["spawn_items"]) {
-                                        if (firstItem in groupedItemData[0][spawner][3]["spawn_items"]) {
+                                    if (groupedItemData[0][spawner][firstSpawnerIdx] && groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"]) {
+                                        // console.log(groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"], spawner)
+                                        if (firstItem in groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"]) {
 
                                             targetCategory = spawner;
                                             break;
@@ -131,6 +139,7 @@ export default function ItemDetailPage(
                                     }
 
                                 }
+                                console.log(targetCategory);
                                 if (!targetCategory) {
                                     return (
                                         <div></div>
@@ -152,6 +161,12 @@ export default function ItemDetailPage(
                                                        expectedPerEnergy += spawnItems[key] * Math.pow(2, (parseInt(key) % 100 - 1));
                                                    }
                                                 }
+
+                                                if(expectedPerEnergy == 0){
+                                                    return;
+                                                }
+
+
                                                 let neededLv1Item = Math.pow(2, (parseInt(params.key) % 100 - 1));
 
 
