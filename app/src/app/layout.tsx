@@ -16,7 +16,7 @@ import {CounterStoreProvider} from '@/app/providers/testProvider';
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Suspense} from "react";
-import GoogleAnalytics from "@/app/lib/GoogleAnalytics";
+import GoogleAnalytics from "@/app/libs/GoogleAnalytics";
 
 export default function RootLayout({
                                        children,
