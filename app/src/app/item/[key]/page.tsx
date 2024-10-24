@@ -123,20 +123,24 @@ export default function ItemDetailPage(
 
                                 let firstSpawnerIdx = 3;
 
-                                if(firstItem == "207001"){
+                                if (firstItem == "207001") {
                                     firstSpawnerIdx = 4;
                                 }
 
                                 for (let spawner in groupedItemData[0]) {
 
-                                    if (groupedItemData[0][spawner][firstSpawnerIdx] && groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"]) {
-                                        // console.log(groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"], spawner)
-                                        if (firstItem in groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"]) {
+                                    if (groupedItemData[0][spawner][firstSpawnerIdx]) {
+                                        if (groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"] !== undefined) {
+                                            // console.log(groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"], spawner)
+                                            // @ts-ignore
+                                            if (firstItem in groupedItemData[0][spawner][firstSpawnerIdx]["spawn_items"]) {
 
-                                            targetCategory = spawner;
-                                            break;
+                                                targetCategory = spawner;
+                                                break;
+                                            }
                                         }
                                     }
+
 
                                 }
                                 console.log(targetCategory);
@@ -155,14 +159,14 @@ export default function ItemDetailPage(
                                             groupedItemData[0][targetCategory].slice(3).map((item: Item, idx: number) => {
                                                 let spawnItems = item["spawn_items"];
                                                 let expectedPerEnergy = 0;
-                                                for(let key in spawnItems){
+                                                for (let key in spawnItems) {
                                                     console.log(item, key);
-                                                   if(Math.floor(parseInt(key) / 100) == Math.floor(parseInt(params.key) / 100)){
-                                                       expectedPerEnergy += spawnItems[key] * Math.pow(2, (parseInt(key) % 100 - 1));
-                                                   }
+                                                    if (Math.floor(parseInt(key) / 100) == Math.floor(parseInt(params.key) / 100)) {
+                                                        expectedPerEnergy += spawnItems[key] * Math.pow(2, (parseInt(key) % 100 - 1));
+                                                    }
                                                 }
 
-                                                if(expectedPerEnergy == 0){
+                                                if (expectedPerEnergy == 0) {
                                                     return;
                                                 }
 
@@ -178,7 +182,7 @@ export default function ItemDetailPage(
                                                         </div>
                                                         <div className={"text-xl ml-3"}>
                                                         <span
-                                                            className={" font-bold"}>{Math.floor(neededLv1Item / expectedPerEnergy * 10)/ 10}</span> 개
+                                                            className={" font-bold"}>{Math.floor(neededLv1Item / expectedPerEnergy * 10) / 10}</span> 개
                                                         </div>
                                                     </div>
                                                 )
@@ -332,7 +336,7 @@ export default function ItemDetailPage(
                                 // .reduce((r, [k, v]) => ({ ...r, [k]: v }), {}));
 
                                 // console.log(key);
-                                if(typedItemObj[key] === undefined){
+                                if (typedItemObj[key] === undefined) {
                                     return (
                                         <div key={idx} className={"flex flex-row gap-2 items-center"}>
                                             <ItemWrapper item={typedItemObj[key]}/>
