@@ -16,6 +16,7 @@ import {CounterStoreProvider} from '@/app/providers/testProvider';
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Suspense} from "react";
+import GoogleAnalytics from "@/app/lib/GoogleAnalytics";
 
 export default function RootLayout({
                                        children,
@@ -37,10 +38,14 @@ export default function RootLayout({
             <title>
                 안아줘요 동물맨션 가이드북
             </title>
+
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YSMYZPNFY"></script>
+
         </head>
         <body
             className={`${suite.variable}  antialiased light`}
         >
+        <GoogleAnalytics gaId={"G-8YSMYZPNFY"}/>
         <div className={"flex justify-center w-full min-h-screen "}>
             <div className={"max-w-[500px] w-full  flex flex-col relative"}>
                 <div
