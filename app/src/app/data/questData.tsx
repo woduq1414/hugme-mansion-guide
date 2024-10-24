@@ -12,7 +12,7 @@ for(let i = 0 ; i < questData.length ; i++ ){
     const quest = questData[i];
     const key = quest["quest_id"];
 
-    console.log(key, String(limitFloor * 1000 + limitQuest).padStart(5, "0"))
+    // console.log(key, String(limitFloor * 1000 + limitQuest).padStart(5, "0"))
     if(key.endsWith(String(limitFloor * 1000 + limitQuest).padStart(5, "0"))){
         endIdx = i;
         break;

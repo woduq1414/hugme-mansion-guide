@@ -143,7 +143,7 @@ export default function ItemDetailPage(
 
 
                                 }
-                                console.log(targetCategory);
+                                // console.log(targetCategory);
                                 if (!targetCategory) {
                                     return (
                                         <div></div>
@@ -160,7 +160,7 @@ export default function ItemDetailPage(
                                                 let spawnItems = item["spawn_items"];
                                                 let expectedPerEnergy = 0;
                                                 for (let key in spawnItems) {
-                                                    console.log(item, key);
+                                                    // console.log(item, key);
                                                     if (Math.floor(parseInt(key) / 100) == Math.floor(parseInt(params.key) / 100)) {
                                                         expectedPerEnergy += spawnItems[key] * Math.pow(2, (parseInt(key) % 100 - 1));
                                                     }

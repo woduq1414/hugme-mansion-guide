@@ -26,7 +26,7 @@ export default function Home() {
     // console.log(questData["m_TableData"])
 
     const [targetFloor, setTargetFloor] = useState(1);
-    console.log(typedQuestData);
+    // console.log(typedQuestData);
 
     const typedItemObj: {
         [key: string]: Item
