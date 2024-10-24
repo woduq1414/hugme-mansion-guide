@@ -4,14 +4,18 @@ import Image from "next/image";
 
 import questData from "../data/quest_data.json";
 
+import limit from "@/app/data/limit.json"
+
+const questFloorLimit = limit["quest"]["final_floor"];
 
 import {useEffect, useState} from "react";
 
 import {Item, Mission, Quest, Reward} from "../models/model";
 
-const typedQuestData: Quest[] = questData as unknown as Quest[];
 
 import {typedItemData} from "@/app/data/ItemData";
+
+import {typedQuestData} from "@/app/data/questData";
 
 import ItemWrapper from "../components/ItemWrapper";
 import {useSearchParams} from "next/navigation";
@@ -22,7 +26,7 @@ export default function Home() {
     // console.log(questData["m_TableData"])
 
     const [targetFloor, setTargetFloor] = useState(1);
-
+    console.log(typedQuestData);
 
     const typedItemObj: {
         [key: string]: Item
@@ -42,10 +46,12 @@ export default function Home() {
 
     return (
 
-        <div className={"flex flex-col w-full "}>
+        <div className={"flex flex-col w-full mb-2"}>
             <div className={"flex flex-row flex-wrap px-4 gap-2 w-full"}>
                 {
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((idx) => {
+                    [...Array(questFloorLimit)].map((_, i) => {
+                        return i + 1;
+                    }).map((idx) => {
                         return (
                             <div key={idx} className={`bg-amber-300 rounded-md px-2 text-lg cursor-pointer ${
                                 targetFloor === idx ? 'bg-amber-500' : ''
@@ -78,7 +84,7 @@ export default function Home() {
                                     {
                                         quest["mission"].map((mission: Mission, idx2: number) => {
 
-                                            console.log(mission);
+                                            // console.log(mission);
                                             if (mission["item"] == null) {
                                                 return;
                                             }
@@ -89,20 +95,29 @@ export default function Home() {
                                                 <ItemWrapper
 
                                                     key={
-                                                    idx2
-                                                }
-                                                             item={mission["item"]} cnt={mission["cnt"]}/>
+                                                        idx2
+                                                    }
+                                                    item={mission["item"]} cnt={mission["cnt"]}/>
                                             )
                                         })
                                     }
 
                                 </div>
 
-                                <div className={"flex flex-row gap-2"}>
+                                <div className={"flex flex-row gap-2 items-center"}>
+                                    {
+                                        quest["event"] && (
+                                            <div className={"rounded-lg px-3 py-1 bg-gray-200 text-sm cursor-pointer"}>
+                                                + {
+                                                    quest["event"].split("open")[1].split("F")[0]
+                                                }층 해금
+                                            </div>
+                                        )
+                                    }
                                     {
                                         quest["reward"].map((reward: Reward, idx2: number) => {
 
-                                            console.log(reward);
+                                            // console.log(reward);
                                             if (reward["item"] == null) {
                                                 return;
                                             }
@@ -113,9 +128,9 @@ export default function Home() {
                                                 <ItemWrapper
                                                     size={undefined}
                                                     key={
-                                                    idx2
-                                                }
-                                                             item={reward["item"]} cnt={reward["cnt"]}/>
+                                                        idx2
+                                                    }
+                                                    item={reward["item"]} cnt={reward["cnt"]}/>
                                             )
                                         })
                                     }

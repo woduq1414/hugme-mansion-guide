@@ -19,7 +19,6 @@ export default function ItemDetailPage(
 ) {
     // console.log(questData["m_TableData"])
 
-    const [targetFloor, setTargetFloor] = useState(1);
 
     const router = useRouter();
 
@@ -317,6 +316,30 @@ export default function ItemDetailPage(
                                 // .sort(([, a], [, b]) => a - b)
                                 // .reduce((r, [k, v]) => ({ ...r, [k]: v }), {}));
 
+                                // console.log(key);
+                                if(typedItemObj[key] === undefined){
+                                    return (
+                                        <div key={idx} className={"flex flex-row gap-2 items-center"}>
+                                            <ItemWrapper item={typedItemObj[key]}/>
+                                            <div className={"text-lg ml-3"}>
+                                                미확인 아이템
+                                            </div>
+                                            {
+                                                item["spawn_items"][key] >= 1 ? (
+                                                        <div className={"text-xl ml-3"}>
+                                        <span
+                                            className={" font-bold"}>{item["spawn_items"][key]}</span> 개
+                                                        </div>
+                                                    ) :
+                                                    <div className={"text-xl ml-3"}>
+                                            <span
+                                                className={" font-bold"}>{Math.round(item["spawn_items"][key] * 100)}</span> %
+                                                    </div>
+
+                                            }
+                                        </div>
+                                    );
+                                }
                                 return (
                                     <div key={idx} className={"flex flex-row gap-2 items-center"}>
                                         <ItemWrapper item={typedItemObj[key]}/>

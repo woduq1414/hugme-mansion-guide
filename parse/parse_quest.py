@@ -9,6 +9,14 @@ quest_data_json = json.load(open("./apkdata/json/QuestNames Shared Data.json", "
 
 quest_data_csv = pd.read_csv(f'./csv/QuestData.csv', dtype=str)
 
+event_cond_csv = pd.read_csv(f"./csv/EventCond.csv")
+
+event_cond_dict = {}
+for idx, row in event_cond_csv.iterrows():
+    if "open" in row["EventCode"]:
+        event_cond_dict[row["RequiredQuestID"]] = row["EventCode"]
+
+
 item_data_json = json.load(open("./csv/result.json", 'r', encoding='UTF8'))
 
 print(quest_name_json)
@@ -19,6 +27,9 @@ for idx, row in quest_data_csv.iterrows():
     dict = {}
 
     dict["quest_id"] = row["QuestID"]
+
+    if dict["quest_id"] in event_cond_dict:
+        dict["event"] = event_cond_dict[dict["quest_id"]]
 
     mission_dict = {}
     if str(row["MissionItem0"]) == "nan":
@@ -61,6 +72,8 @@ for idx, row in quest_data_csv.iterrows():
         mission_list.append(dic)
 
     dict["mission"] = mission_list
+
+
 
     reward_list = []
 

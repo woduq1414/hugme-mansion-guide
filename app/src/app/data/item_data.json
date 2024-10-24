@@ -2730,7 +2730,7 @@
     "comment": "일일퀘스트",
     "spawn_item": null,
     "spawn_count": null,
-    "image_name": "miss01",
+    "image_name": "DailyQuest_Gift",
     "name": "일일퀘스트 보상상자",
     "selling_price": null,
     "bubble_price": null,

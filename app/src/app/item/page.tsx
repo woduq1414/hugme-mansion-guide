@@ -38,7 +38,7 @@ export default function ItemPage() {
 
     return (
 
-        <div className={"flex flex-col w-full "}>
+        <div className={"flex flex-col w-full mb-2 "}>
             <div className={"flex flex-row flex-wrap px-4 gap-2 w-full"}>
                 {
                     ["생산템", "일반템", "보상템", "특수템",].map((category, idx) => {

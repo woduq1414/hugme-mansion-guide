@@ -46,11 +46,37 @@ export default function ItemWrapper(
 
     let borderColor = "border-gray-300";
 
-    if (item["comment"] && item["comment"].toLowerCase() in borderColorMap) {
+    if (item && item["comment"] && item["comment"].toLowerCase() in borderColorMap) {
         // console.log(item["comment"].toLowerCase())
         borderColor = borderColorMap[item["comment"].toLowerCase()];
     }
 
+    if (item === undefined) {
+        return (
+            <div
+
+                className={`rounded-2xl border-2 ${borderColor} ${
+                    props.size == "large" ? "w-24 h-24" : "w-16 h-16"
+                } block relative cursor-pointer`}>
+                <Image src={`/sprites/unknown.png`}
+                       alt={"unknown"}
+                       className={"p-[0.25rem]"}
+
+
+                       fill/>
+
+                {/*<div>{quest["mission"][itemKey]}</div>*/}
+                {
+                    cnt && cnt > 0 ? (
+                        <div className={`text-xs leading-[1.2rem]" +
+                " text-center h-5 w-5 bg-white absolute right-[-0.3rem] bottom-[-0.1rem] rounded-full ${borderColor} border-2 font-bold`}>
+                            {cnt}
+                        </div>
+                    ) : null
+                }
+            </div>
+        )
+    }
 
     return (
         <Tooltip content={item["name"]}>

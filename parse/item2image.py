@@ -6,8 +6,8 @@ from os import listdir
 from os.path import isfile, join
 
 
-categories_list = ["SeedBags", "Water", "Woods", "Plants", "Cleanings", "Currencies", "Constructions", "Househods", "Stationeries", "Tools"]
-# categories_list = ["Water", "Woods"]
+# categories_list = ["SeedBags", "Water", "Woods", "Plants", "Cleanings", "Currencies", "Constructions", "Househods", "Stationeries", "Tools"]
+categories_list = ["DailyQuest",]
 
 for category in categories_list:
     print("Processing category: ", category)

@@ -14,6 +14,7 @@ interface Quest {
     mission: Mission[];
     reward: Reward[];
     name: string;
+    event? : string | null;
 }
 
 interface Item {
