@@ -107,10 +107,10 @@ export default function Home() {
                                 <div className={"flex flex-row gap-2 items-center"}>
                                     {
                                         quest["event"] && (
-                                            <div className={"rounded-lg px-3 py-1 bg-gray-200 text-sm cursor-pointer"}>
+                                            <div className={"rounded-lg px-3 py-1 bg-gray-200 text-sm cursor-pointer "}>
                                                 + {
                                                     quest["event"].split("open")[1].split("F")[0]
-                                                }층 해금
+                                                }층<span className={" hidden md:inline"}> 해금</span>
                                             </div>
                                         )
                                     }
