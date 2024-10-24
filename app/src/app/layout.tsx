@@ -39,7 +39,6 @@ export default function RootLayout({
                 안아줘요 동물맨션 가이드북
             </title>
 
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YSMYZPNFY"></script>
 
         </head>
         <body
