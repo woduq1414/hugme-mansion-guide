@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import questData from "../data/quest_data.json";
 
-import limit from "@/app/data/limit.json"
+import {limit} from "@/app/data/limit";
 
 const questFloorLimit = limit["quest"]["final_floor"];
 

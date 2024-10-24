@@ -1,5 +1,5 @@
 import itemData from "@/app/data/item_data.json";
-import limit from "@/app/data/limit.json";
+import {limit} from "@/app/data/limit";
 
 
 import {Item, Mission, Quest, Reward} from "../models/model";

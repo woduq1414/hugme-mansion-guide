@@ -1,5 +1,5 @@
 import questData from "../data/quest_data.json";
-import limit from "@/app/data/limit.json";
+import {limit} from "@/app/data/limit";
 
 const limitFloor = limit["quest"]["final_floor"];
 const limitQuest = limit["quest"]["final_quest"];
