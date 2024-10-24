@@ -10,7 +10,7 @@ const suite = localFont({
     variable: "--font-suite",
     weight: "100 900",
 });
-
+import {Analytics} from "@vercel/analytics/react"
 
 import {CounterStoreProvider} from '@/app/providers/testProvider';
 import Link from "next/link";
@@ -80,9 +80,10 @@ export default function RootLayout({
                         <Suspense>
                             {children}
 
+
                         </Suspense>
 
-
+                        <Analytics/>
                     </CounterStoreProvider>
 
                 </div>
