@@ -190,3 +190,6 @@ parse/**/*.json
 parse/**/*.png
 
 #dev_limit.json
+asset_ripper_log_result.txt
+
+*.zip

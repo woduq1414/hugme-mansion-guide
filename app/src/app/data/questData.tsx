@@ -19,5 +19,18 @@ for(let i = 0 ; i < questData.length ; i++ ){
     }
 
 }
+let eventStartIdx = -1;
+for(let i = 0 ; i < questData.length ; i++ ){
+    const quest = questData[i];
+    const key = quest["quest_id"];
 
-export const typedQuestData : Quest[] = questData.slice(0, endIdx) as Quest[];
+    if (quest["quest_id"].substring(0,4) == "q_eh"){
+        eventStartIdx = i;
+        break;
+    }
+
+}
+
+let eventQuestData : Quest[] = questData.slice(eventStartIdx) as Quest[];
+
+export const typedQuestData : Quest[] = [...questData.slice(0, endIdx), ...eventQuestData] as Quest[];

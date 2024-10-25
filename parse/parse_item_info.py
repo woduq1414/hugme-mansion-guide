@@ -29,7 +29,14 @@ for item_category in item_category_list:
 
     file2 = open(f'./apkdata/json/ItemName_{item_category}_ko-KR.json', 'r', encoding='UTF8')
 
-    name_data = json.load(file2)["m_TableData"]
+    print(item_category)
+
+    json2 = json.load(file2)
+    try:
+        name_data = json2["m_TableData"]
+    except:
+
+        name_data = json2["m_Structure"]["m_TableData"]
 
     print(shared_data)
 
@@ -79,9 +86,12 @@ for item_category in item_category_list:
             result[item["m_Id"]]["spawn_items"] = spawn_items
 
 
+            print(item["m_Id"])
             result[item["m_Id"]]["comment"] = [
                 x["m_Localized"] for x in name_data if x["m_Id"] == item["m_Id"]
             ][0].split(" ")[0].split("(")[0]
+
+            print(row)
 
 
 
@@ -140,6 +150,9 @@ for item_category in item_category_list:
             302 : "energy",
             303 : "exp",
             304 : "energy_drink",
+            351 : "Halloween_candy",
+            352 : "Halloween_cupcake",
+            353 : "Halloween_coin_quest",
 
             307 : "timer",
             400 : "Reward_chest_green",
@@ -147,7 +160,8 @@ for item_category in item_category_list:
             402 : "Reward_chest_blue",
             403 : "piggybank",
             404 : "energy_G",
-            # 406 :
+            406 : "DailyQuest_Gift",
+            451 : "Halloween_present"
 
         }
         item_name_tag = image_name_dic.get(int(key) // 1000, "miss")

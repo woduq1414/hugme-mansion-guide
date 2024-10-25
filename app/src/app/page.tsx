@@ -8,7 +8,9 @@ export default function Home() {
                     <span>
                     [안아줘요 동물맨션] 비공식 가이드북입니다.
                     </span>
-
+                     <span className={"text-sm mb-4"}>
+                          v1.0.3
+                     </span>
                      <span className={"text-base mt-2"}>
                           본 사이트의 모든 데이터 및 이미지는 <a href={"https://x.com/studio_806"}
                                                   className={"text-blue-500"}
@@ -22,7 +24,7 @@ export default function Home() {
 
                          <div className={"flex flex-row mt-3 justify-center items-center"}>
                               <a href={"https://github.com/woduq1414/hugme-mansion-guide"}
-                              className={" cursor-pointer flex flex-row justify-center items-center"}
+                                 className={" cursor-pointer flex flex-row justify-center items-center"}
                               >
                         <svg
                             width="23px"

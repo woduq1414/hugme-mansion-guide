@@ -25,7 +25,7 @@ import {useRouter} from "next/navigation";
 export default function Home() {
     // console.log(questData["m_TableData"])
 
-    const [targetFloor, setTargetFloor] = useState(1);
+    const [targetFloor, setTargetFloor] = useState<string | null>("1");
     // console.log(typedQuestData);
 
     const typedItemObj: {
@@ -40,7 +40,8 @@ export default function Home() {
 
     useEffect(() => {
         if (searchParams.has('floor')) {
-            setTargetFloor(parseInt(searchParams.get('floor') as string));
+
+            setTargetFloor(searchParams.get('floor'));
         }
     }, [searchParams])
 
@@ -49,9 +50,9 @@ export default function Home() {
         <div className={"flex flex-col w-full mb-2"}>
             <div className={"flex flex-row flex-wrap px-4 gap-2 w-full"}>
                 {
-                    [...Array(questFloorLimit)].map((_, i) => {
-                        return i + 1;
-                    }).map((idx) => {
+                    [...([...Array(questFloorLimit)].map((_, i) => {
+                        return (i + 1) + "";
+                    })),...["event"]].map((idx) => {
                         return (
                             <div key={idx} className={`bg-amber-300 rounded-md px-2 text-lg cursor-pointer ${
                                 targetFloor === idx ? 'bg-amber-500' : ''
@@ -61,7 +62,10 @@ export default function Home() {
                                      setTargetFloor(idx);
                                  }}
                             >
-                                {idx}층
+                                {
+                                    idx == "event" ? "이벤트" : idx + "층"
+
+                                }
                             </div>
                         );
 
@@ -70,10 +74,17 @@ export default function Home() {
             </div>
             <div className={"flex w-full flex-col gap-2 "}>{
                 (typedQuestData as Quest[]).map((quest: Quest, idx) => {
-
-                    if (Math.floor((parseInt(quest["quest_id"].substring(3, 9)) - 100000) / 1000) != targetFloor) {
-                        return;
+                    if (targetFloor == "event"){
+                        // console.log(quest["quest_id"].substring(0,4));
+                        if (quest["quest_id"].substring(0,4) != "q_eh"){
+                            return;
+                        }
+                    }else{
+                        if (targetFloor && Math.floor((parseInt(quest["quest_id"].substring(3, 9)) - 100000) / 1000) != parseInt(targetFloor)) {
+                            return;
+                        }
                     }
+
 
                     return (
                         <div key={idx}
