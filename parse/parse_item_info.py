@@ -79,8 +79,8 @@ for item_category in item_category_list:
                     continue
 
                 if spawn_count != "" and str(spawn_count) != "nan":
-                    spawn_items[spawn_item] = spawn_count
-                else:
+                    spawn_items["c" + spawn_item] = spawn_count
+                if spawn_probability != "" and str(spawn_probability) != "nan":
                     spawn_items[spawn_item] = spawn_probability
 
             result[item["m_Id"]]["spawn_items"] = spawn_items

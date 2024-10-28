@@ -335,11 +335,17 @@ export default function ItemDetailPage(
                                 // .sort(([, a], [, b]) => a - b)
                                 // .reduce((r, [k, v]) => ({ ...r, [k]: v }), {}));
 
-                                // console.log(key);
-                                if (typedItemObj[key] === undefined) {
+                                console.log(key);
+
+                                let tmpKey = key;
+                                if(key[0] == 'c'){
+                                    tmpKey = key.substring(1);
+                                }
+
+                                if (typedItemObj[tmpKey] === undefined) {
                                     return (
                                         <div key={idx} className={"flex flex-row gap-2 items-center"}>
-                                            <ItemWrapper item={typedItemObj[key]}/>
+                                            <ItemWrapper item={typedItemObj[tmpKey]}/>
                                             <div className={"text-lg ml-3"}>
                                                 미확인 아이템
                                             </div>
@@ -361,9 +367,9 @@ export default function ItemDetailPage(
                                 }
                                 return (
                                     <div key={idx} className={"flex flex-row gap-2 items-center"}>
-                                        <ItemWrapper item={typedItemObj[key]}/>
+                                        <ItemWrapper item={typedItemObj[tmpKey]}/>
                                         <div className={"text-lg ml-3"}>
-                                            {typedItemObj[key]["name"]}
+                                            {typedItemObj[tmpKey]["name"]}
                                         </div>
                                         {
                                             item["spawn_items"][key] >= 1 ? (

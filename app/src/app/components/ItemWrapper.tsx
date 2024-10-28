@@ -15,6 +15,12 @@ export default function ItemWrapper(
 
     const {item, cnt} = props;
 
+
+    if (item ){
+            console.log(item.key)
+
+    }
+
     const borderColorMap: {
         [key: string]: string
     } = {
