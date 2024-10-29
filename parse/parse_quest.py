@@ -3,7 +3,7 @@ from math import isnan
 
 import pandas as pd
 
-quest_name_json = json.load(open("./apkdata/json/QuestNames_ko-KR.json", 'r', encoding='UTF8'))["m_TableData"]
+quest_name_json = json.load(open("./apkdata/json/QuestNames_ko-KR.json", 'r', encoding='UTF8'))['m_Structure']["m_TableData"]
 quest_data_json = json.load(open("./apkdata/json/QuestNames Shared Data.json", "r", encoding="UTF8"))["m_Structure"][
     "m_Entries"]
 

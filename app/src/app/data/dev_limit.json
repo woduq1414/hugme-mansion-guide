@@ -1,7 +1,7 @@
 {
   "quest": {
-    "final_floor" : 7,
-    "final_quest" : 9
+    "final_floor" : 8,
+    "final_quest" : 100
   },
   "item": {
     "cleaning products": 12,
@@ -23,9 +23,9 @@
     "pipes": 5,
     "water": 6,
     "lamp": 5,
-    "household goods": 0,
-    "electronic products": 0,
-    "shopping carts": 2,
+    "household goods": 6,
+    "electronic products": 6,
+    "shopping carts": 8,
     "energydrink": 0,
     "copycamera" : 0,
     "scissors" : 0,

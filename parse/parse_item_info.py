@@ -25,7 +25,7 @@ for item_category in item_category_list:
 
     file1 = open(f'./apkdata/json/ItemName_{item_category} Shared Data.json', 'r', encoding='UTF8')
 
-    shared_data = json.load(file1)["m_Entries"]
+    shared_data = json.load(file1)['m_Structure']["m_Entries"]
 
     file2 = open(f'./apkdata/json/ItemName_{item_category}_ko-KR.json', 'r', encoding='UTF8')
 
