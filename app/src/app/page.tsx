@@ -9,7 +9,7 @@ export default function Home() {
                     [안아줘요 동물맨션] 비공식 가이드북입니다.
                     </span>
                      <span className={"text-sm mb-4"}>
-                          v1.0.3
+                          v1.0.4
                      </span>
                      <span className={"text-base mt-2"}>
                           본 사이트의 모든 데이터 및 이미지는 <a href={"https://x.com/studio_806"}
